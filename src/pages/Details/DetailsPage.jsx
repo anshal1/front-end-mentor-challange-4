@@ -38,6 +38,20 @@ const DetailsPage = () => {
     }
   };
   useEffect(() => {
+    const page = document.getElementById("main_detailspage_container");
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.id = "main_detailspage_container_show";
+          }
+        });
+      },
+      {
+        root: document.body,
+      }
+    );
+    obs.observe(page);
     searchbyname();
   }, []);
   useEffect(() => {
@@ -78,19 +92,19 @@ const DetailsPage = () => {
   };
   return (
     <>
-      {loading ? (
-        <Loading />
-      ) : (
-        <div className="main_detailspage_container">
-          <div className="back">
-            <button
-              onClick={() => {
-                navi("/");
-              }}
-            >
-             <i className="fa-solid fa-arrow-left"></i> Back
-            </button>
-          </div>
+      <div id="main_detailspage_container">
+        <div className="back">
+          <button
+            onClick={() => {
+              navi("/");
+            }}
+          >
+            <i className="fa-solid fa-arrow-left"></i> Back
+          </button>
+        </div>
+        {loading ? (
+          <Loading />
+        ) : (
           <div className="details_container">
             <div className="country_image">
               <img src={Details[0]?.flags.png} alt="" />
@@ -108,7 +122,7 @@ const DetailsPage = () => {
                     </p>
                     <p>
                       <span>Population: </span>
-                      {Details[0]?.population}
+                      {Details[0]?.population.toLocaleString()}
                     </p>
                     <p>
                       <span>Region: </span>
@@ -153,8 +167,8 @@ const DetailsPage = () => {
               </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </>
   );
 };

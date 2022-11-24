@@ -1,0 +1,12 @@
+#home{
+    width: 100%;
+    height: fit-content;
+    opacity: 0;
+    transition: all 500ms;
+}
+#home_show{
+    width: 100%;
+    height: fit-content;
+    opacity: 1;
+    transition: all 500ms;
+}

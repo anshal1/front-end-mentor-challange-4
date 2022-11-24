@@ -8,7 +8,11 @@ const Card = (props) => {
       <div
         className="card"
         onClick={() => {
-          navi(`/details/${props.commonname}`);
+          const home = document.getElementById("home_show");
+          home.id = "home";
+          setTimeout(() => {
+            navi(`/details/${props.commonname}`);
+          }, 500);
         }}
       >
         <div className="country_img">
@@ -21,7 +25,7 @@ const Card = (props) => {
           <div className="other_info">
             <p>
               <span>Population: </span>
-              {props.population}
+              {props.population.toLocaleString()}
             </p>
             <p>
               <span>Region: </span>
